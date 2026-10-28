@@ -75,11 +75,11 @@
 }
 
 .contacto__estado--ok {
-  color: var(--marca-principal);
+  color: var(--marca-titulos, var(--marca-principal));
 }
 
 .contacto__estado--error {
-  color: #9b2c2c;
+  color: var(--marca-error, #9b2c2c);
 }
 
 /* Campo trampa contra robots: las personas no lo ven */

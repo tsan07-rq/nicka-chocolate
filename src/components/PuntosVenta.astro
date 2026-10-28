@@ -1,0 +1,42 @@
+---
+// Puntos de venta: varias direcciones agrupadas por ciudad.
+// El cliente las edita desde el CMS (Puntos de venta). Sin puntos, la sección no aparece.
+import '../styles/puntos-venta.css';
+import { puntosVenta, puntosVentaPorCiudad, enlaceMapaPunto } from '../lib/contenido.js';
+
+const ciudades = puntosVentaPorCiudad().map((grupo) => ({
+  ...grupo,
+  puntos: grupo.puntos.map((punto) => ({ ...punto, mapa: enlaceMapaPunto(punto) })),
+}));
+---
+
+<section class="seccion puntos-venta" id="puntos-venta">
+  <div class="contenedor">
+    <header class="seccion__cabecera">
+      <h2 class="seccion__titulo">{puntosVenta.titulo}</h2>
+      {puntosVenta.intro && <p class="seccion__intro">{puntosVenta.intro}</p>}
+    </header>
+
+    <div class="puntos__ciudades">
+      {
+        ciudades.map((grupo) => (
+          <div class="puntos__ciudad">
+            <h3 class="puntos__nombre-ciudad">{grupo.ciudad}</h3>
+            <ul class="puntos__lista">
+              {grupo.puntos.map((punto) => (
+                <li class="punto">
+                  <p class="punto__nombre">{punto.nombre}</p>
+                  {punto.direccion && <p class="punto__direccion">{punto.direccion}</p>}
+                  <a class="punto__enlace" href={punto.mapa} target="_blank" rel="noopener noreferrer">
+                    Ver en Google Maps
+                    <span class="solo-lectores"> ({punto.nombre}, se abre en una pestaña nueva)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

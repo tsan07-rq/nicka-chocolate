@@ -22,7 +22,7 @@
   padding: 0.3rem 0.5rem;
   border: 1px solid currentColor;
   border-radius: var(--radio-boton);
-  color: var(--marca-principal);
+  color: var(--marca-titulos, var(--marca-principal));
   font-size: 0.75rem;
   line-height: 1;
   white-space: nowrap;
@@ -79,7 +79,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  color: var(--marca-principal);
+  color: var(--marca-titulos, var(--marca-principal));
   font-family: var(--fuente-titulos);
   font-size: clamp(4rem, 9vw, 6rem);
   opacity: 0.55;

@@ -1,0 +1,78 @@
+{
+  "titulo": "Dónde comprar",
+  "intro": "Encuentra Nicka en estos puntos de venta.",
+  "puntos": [
+    {
+      "nombre": "Supermercado \"Dicavi\"",
+      "ciudad": "Zamora",
+      "direccion": "Av. Héroes de Paquisha y Sevilla de Oro",
+      "visible": true
+    },
+    {
+      "nombre": "Supermercado \"Bayes\"",
+      "ciudad": "Zamora",
+      "direccion": "Av. Héroes de Paquisha y Fernando de Benavente",
+      "visible": true
+    },
+    {
+      "nombre": "Supermercado \"Del Rios\"",
+      "ciudad": "Zamora",
+      "direccion": "Av. del Ejército",
+      "visible": true
+    },
+    {
+      "nombre": "Comercial San Antonio",
+      "ciudad": "Zamora",
+      "direccion": "Calle Diego de Vaca, diagonal al Centro Comercial de Zamora",
+      "visible": true
+    },
+    {
+      "nombre": "Zerimar",
+      "ciudad": "Loja",
+      "direccion": "Ancón–Tena 13-82 y Av. Gran Colombia",
+      "visible": true
+    },
+    {
+      "nombre": "Tienda Somos Loja",
+      "ciudad": "Loja",
+      "direccion": "José Antonio Eguiguren y Bernardo Valdivieso",
+      "visible": true
+    },
+    {
+      "nombre": "Centro Eólico Villonaco",
+      "ciudad": "Loja",
+      "direccion": "Cerro Villonaco",
+      "visible": true
+    },
+    {
+      "nombre": "Ecotienda Avejita Longeva",
+      "ciudad": "Vilcabamba",
+      "direccion": "",
+      "visible": true
+    },
+    {
+      "nombre": "Waylla Pampa",
+      "ciudad": "Catamayo",
+      "direccion": "Aeropuerto de Catamayo",
+      "visible": true
+    },
+    {
+      "nombre": "Supermercado CUMA",
+      "ciudad": "Cuenca",
+      "direccion": "Ricardo Darquea y Av. de las Américas",
+      "visible": true
+    },
+    {
+      "nombre": "Tienda Emprendedores del Ecuador \"COEE\"",
+      "ciudad": "Quito",
+      "direccion": "Centro Histórico: García Moreno N6-63, entre Mejía y Olmedo",
+      "visible": true
+    },
+    {
+      "nombre": "Tienda Emprendedores del Ecuador \"COEE\"",
+      "ciudad": "Baños de Agua Santa",
+      "direccion": "",
+      "visible": true
+    }
+  ]
+}

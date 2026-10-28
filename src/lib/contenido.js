@@ -10,6 +10,7 @@ import contactoCrudo from '../content/contacto.json';
 import redesCrudo from '../content/redes.json';
 import horariosCrudo from '../content/horarios.json';
 import galeriaCrudo from '../content/galeria.json';
+import puntosVentaCrudo from '../content/puntos-venta.json';
 
 const archivosMenu = import.meta.glob('../content/menu/*.json', { eager: true, import: 'default' });
 const archivosPromociones = import.meta.glob('../content/promociones/*.json', {
@@ -95,6 +96,7 @@ export const contacto = {
   direccion: texto(c.direccion),
   referencia: texto(c.referencia),
   mapa: texto(c.mapa),
+  consultaMapa: texto(c.consultaMapa),
   claveWeb3forms: texto(c.claveWeb3forms),
 };
 
@@ -114,9 +116,12 @@ export function enlaceMapa() {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contacto.direccion)}`;
 }
 
+// El mapa se busca por "consultaMapa" (por ejemplo, el nombre del negocio en Google Maps) y,
+// si está vacío, por la dirección.
 export function mapaIncrustado() {
-  if (!contacto.direccion) return '';
-  return `https://www.google.com/maps?q=${encodeURIComponent(contacto.direccion)}&output=embed`;
+  const consulta = contacto.consultaMapa || contacto.direccion;
+  if (!consulta) return '';
+  return `https://www.google.com/maps?q=${encodeURIComponent(consulta)}&output=embed`;
 }
 
 const r = objeto(redesCrudo);
@@ -154,6 +159,42 @@ export const galeria = {
     .map((foto) => ({ imagen: texto(objeto(foto).imagen), descripcion: texto(objeto(foto).descripcion) }))
     .filter((foto) => foto.imagen),
 };
+
+/* ---------- puntos de venta (varias direcciones, agrupadas por ciudad) ---------- */
+
+const pv = objeto(puntosVentaCrudo);
+
+export const puntosVenta = {
+  titulo: texto(pv.titulo) || 'Dónde comprar',
+  intro: texto(pv.intro),
+  puntos: lista(pv.puntos)
+    .map((p) => {
+      const punto = objeto(p);
+      return {
+        nombre: texto(punto.nombre),
+        ciudad: texto(punto.ciudad),
+        direccion: texto(punto.direccion),
+        visible: punto.visible !== false,
+      };
+    })
+    .filter((punto) => punto.nombre && punto.ciudad && punto.visible),
+};
+
+// Agrupa por ciudad respetando el orden en que el cliente las escribió.
+export function puntosVentaPorCiudad() {
+  const grupos = new Map();
+  for (const punto of puntosVenta.puntos) {
+    if (!grupos.has(punto.ciudad)) grupos.set(punto.ciudad, []);
+    grupos.get(punto.ciudad).push(punto);
+  }
+  return [...grupos].map(([ciudad, puntos]) => ({ ciudad, puntos }));
+}
+
+// Enlace de Google Maps que busca el punto por nombre, dirección y ciudad.
+export function enlaceMapaPunto(punto) {
+  const consulta = [punto.nombre, punto.direccion, punto.ciudad, 'Ecuador'].filter(Boolean).join(', ');
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consulta)}`;
+}
 
 /* ---------- colecciones (una carpeta, un archivo por elemento) ---------- */
 
@@ -240,6 +281,7 @@ const tieneContenido = {
   historia: () => Boolean(negocio.historia.texto),
   galeria: () => galeria.fotos.length > 0,
   testimonios: () => getTestimonios().length > 0,
+  'puntos-venta': () => puntosVenta.puntos.length > 0,
   ubicacion: () => Boolean(contacto.direccion),
   contacto: () =>
     Boolean(contacto.whatsapp || contacto.telefono || contacto.correo || contacto.claveWeb3forms),

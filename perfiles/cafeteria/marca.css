@@ -1,33 +1,43 @@
 /*
-  Identidad de marca del perfil "cafeteria".
-  Es el ÚNICO archivo que se edita para adaptar la plantilla a un cliente nuevo.
-  Valores actuales: relleno neutro, a reemplazar con el manual de marca del cliente.
+  Identidad de marca de Nicka Chocolate Amazónico (tema oscuro).
+  Es el ÚNICO archivo que se edita para adaptar la plantilla a un cliente.
+  La carpeta se llama "cafeteria" porque así la espera la plantilla base; aquí vive la marca de Nicka.
+
+  Colores tomados del sitio anterior de la marca: marrón cacao #6f541a (oscurecido aquí para que
+  el dorado de los enlaces y botones se lea sobre él), caramelo #d4a574 y dorado #c9975b.
 */
 
 :root {
-  /* 1. Cinco colores de marca */
-  --marca-principal: #2f3a33;   /* barra de navegación sólida, botones, títulos */
-  --marca-secundario: #7a6a53;  /* reservado: hoy ningún componente lo usa (para otros perfiles) */
-  --marca-acento: #c0933a;      /* enlaces, precios, estados activos */
-  --marca-fondo: #f6f4ef;       /* fondo general */
-  --marca-texto: #1f2420;       /* texto principal */
+  color-scheme: dark; /* controles del formulario y barras de desplazamiento en oscuro */
 
-  /* 2. Tipografías (se sustituyen por fuentes autoalojadas del cliente) */
-  --fuente-titulos: Georgia, 'Times New Roman', serif;
+  /* 1. Cinco colores de marca */
+  --marca-principal: #4a3418;   /* barra de navegación al hacer scroll, pie de página */
+  --marca-secundario: #d4a574;  /* reservado: hoy ningún componente lo usa */
+  --marca-acento: #c9975b;      /* botones, enlaces, estados activos */
+  --marca-fondo: #120d0a;       /* fondo general: casi negro, cálido */
+  --marca-texto: #f3ebdf;       /* texto principal: crema */
+
+  /* Tokens extra para marcas con fondo oscuro (la plantilla los usa si existen) */
+  --marca-titulos: #e6c78f;       /* títulos y detalles sobre el fondo oscuro */
+  --marca-sobre-acento: #1a120b;  /* texto sobre botones dorados */
+  --marca-error: #ffa59a;         /* mensajes de error legibles sobre fondo oscuro */
+
+  /* 2. Tipografías (sistema; se pueden sustituir por fuentes autoalojadas) */
+  --fuente-titulos: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
   --fuente-texto: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  /* 3. Estilo: esquinas y botones (0 = rectos, valores mayores = redondeados) */
+  /* 3. Estilo: esquinas y botones */
   --radio-boton: 2px;
   --radio-tarjeta: 4px;
 
-  /* Tonos derivados: se calculan solos a partir de los cinco colores */
-  --marca-principal-suave: color-mix(in srgb, var(--marca-principal) 12%, var(--marca-fondo));
-  --marca-fondo-alterno: color-mix(in srgb, var(--marca-principal) 5%, var(--marca-fondo));
-  --marca-borde: color-mix(in srgb, var(--marca-texto) 14%, var(--marca-fondo));
-  --marca-texto-suave: color-mix(in srgb, var(--marca-texto) 68%, var(--marca-fondo));
+  /* Tonos derivados */
+  --marca-principal-suave: color-mix(in srgb, var(--marca-principal) 45%, var(--marca-fondo));
+  --marca-fondo-alterno: color-mix(in srgb, var(--marca-principal) 24%, var(--marca-fondo));
+  --marca-borde: color-mix(in srgb, var(--marca-texto) 16%, var(--marca-fondo));
+  --marca-texto-suave: color-mix(in srgb, var(--marca-texto) 72%, var(--marca-fondo));
   --marca-principal-hover: color-mix(in srgb, var(--marca-principal) 82%, black);
-  --marca-principal-profundo: color-mix(in srgb, var(--marca-principal) 70%, black); /* fondo del hero sin foto */
-  --marca-sobre-principal: var(--marca-fondo); /* texto sobre fondos de color principal */
-  --marca-acento-texto: color-mix(in srgb, var(--marca-acento) 60%, var(--marca-texto)); /* acento legible como texto sobre fondo claro */
-  --marca-borde-fuerte: color-mix(in srgb, var(--marca-texto) 55%, var(--marca-fondo)); /* bordes de campos de formulario */
+  --marca-principal-profundo: color-mix(in srgb, var(--marca-principal) 70%, black); /* pie y portada sin foto */
+  --marca-sobre-principal: var(--marca-texto); /* texto sobre la barra y el pie: crema */
+  --marca-acento-texto: color-mix(in srgb, var(--marca-acento) 60%, var(--marca-texto)); /* enlaces */
+  --marca-borde-fuerte: color-mix(in srgb, var(--marca-texto) 55%, var(--marca-fondo)); /* campos de formulario */
 }

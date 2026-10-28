@@ -1,10 +1,11 @@
 {
-  "whatsapp": "593900000000",
-  "mensajeWhatsapp": "Hola, quisiera hacer una consulta.",
-  "telefono": "+593 90 000 0000",
-  "correo": "hola@ejemplo.com",
-  "direccion": "Av. Ejemplo 123 y Calle Central, Quito, Ecuador",
-  "referencia": "A media cuadra del parque, frente a la farmacia.",
-  "mapa": "",
-  "claveWeb3forms": "00000000-0000-0000-0000-000000000000"
+  "whatsapp": "593982578498",
+  "mensajeWhatsapp": "Hola, quisiera hacer un pedido.",
+  "telefono": "+593 98 257 8498",
+  "correo": "",
+  "direccion": "Troncal Amazónica, Zamora, Zamora Chinchipe, Ecuador",
+  "referencia": "Fábrica y tienda de Nicka Chocolate.",
+  "mapa": "https://www.google.com/maps/dir/?api=1&destination=Nicka+Chocolate+Zamora",
+  "consultaMapa": "Nicka Chocolate, Zamora, Ecuador",
+  "claveWeb3forms": ""
 }

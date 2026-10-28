@@ -1,0 +1,20 @@
+{
+  "nombre": "Más del cacao",
+  "orden": 3,
+  "productos": [
+    {
+      "nombre": "Nibs de cacao",
+      "descripcion": "Semillas de cacao tostadas.",
+      "imagen": "/src/assets/uploads/nibs-de-cacao.jpg",
+      "etiqueta": "",
+      "visible": true
+    },
+    {
+      "nombre": "Licor de cacao Münay",
+      "descripcion": "Elixir de cacao. 12% vol., 750 ml.",
+      "imagen": "/src/assets/uploads/licor-munay.jpg",
+      "etiqueta": "",
+      "visible": true
+    }
+  ]
+}

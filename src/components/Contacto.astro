@@ -18,7 +18,7 @@ const { titulo, texto } = negocio.textos.contacto;
         {
           whatsapp && (
             <li>
-              <a class="boton boton--principal" href={whatsapp} target="_blank" rel="noopener noreferrer">
+              <a class="boton boton--acento" href={whatsapp} target="_blank" rel="noopener noreferrer">
                 Escribir por WhatsApp<span class="solo-lectores"> (se abre en una pestaña nueva)</span>
               </a>
             </li>
@@ -98,7 +98,7 @@ const { titulo, texto } = negocio.textos.contacto;
             <textarea class="campo__control" id="contacto-mensaje" name="message" rows="5" required></textarea>
           </div>
 
-          <button class="boton boton--principal contacto__enviar" type="submit">Enviar mensaje</button>
+          <button class="boton boton--acento contacto__enviar" type="submit">Enviar mensaje</button>
           <p class="contacto__estado" role="status" aria-live="polite" data-estado></p>
         </form>
       )

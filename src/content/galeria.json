@@ -2,11 +2,33 @@
   "titulo": "Galería",
   "intro": "",
   "fotos": [
-    { "imagen": "/src/assets/uploads/galeria-1.png", "descripcion": "Foto de ejemplo 1" },
-    { "imagen": "/src/assets/uploads/galeria-2.png", "descripcion": "Foto de ejemplo 2" },
-    { "imagen": "/src/assets/uploads/galeria-3.png", "descripcion": "Foto de ejemplo 3" },
-    { "imagen": "/src/assets/uploads/galeria-4.png", "descripcion": "Foto de ejemplo 4" },
-    { "imagen": "/src/assets/uploads/galeria-5.png", "descripcion": "Foto de ejemplo 5" },
-    { "imagen": "/src/assets/uploads/galeria-6.png", "descripcion": "Foto de ejemplo 6" }
+    {
+      "imagen": "/src/assets/uploads/galeria-fundadora.jpg",
+      "descripcion": "Gladis Quizhpe, fundadora de Nicka, sostiene dos de sus productos"
+    },
+    {
+      "imagen": "/src/assets/uploads/galeria-bombones-2.jpg",
+      "descripcion": "Bombones de chocolate oscuro en una canasta tejida"
+    },
+    {
+      "imagen": "/src/assets/uploads/galeria-chocolate-55.jpg",
+      "descripcion": "Chocolate dulce al 55% junto a su empaque"
+    },
+    {
+      "imagen": "/src/assets/uploads/galeria-licor-etiqueta.jpg",
+      "descripcion": "Etiqueta del licor de cacao Münay, rodeado de semillas de cacao"
+    },
+    {
+      "imagen": "/src/assets/uploads/galeria-maracuya.jpg",
+      "descripcion": "Maracuyá abierta, ingrediente de los bombones"
+    },
+    {
+      "imagen": "/src/assets/uploads/galeria-bombones-1.jpg",
+      "descripcion": "Bombones de chocolate Nicka"
+    },
+    {
+      "imagen": "/src/assets/uploads/galeria-licor-1.jpg",
+      "descripcion": "Botella de licor de cacao Münay sobre semillas de cacao"
+    }
   ]
 }

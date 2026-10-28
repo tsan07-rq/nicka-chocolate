@@ -10,7 +10,7 @@
 .testimonio {
   margin: 0;
   padding-top: 1.5rem;
-  border-top: 2px solid var(--marca-principal);
+  border-top: 2px solid var(--marca-titulos, var(--marca-principal));
 }
 
 .testimonio__cita {
@@ -19,7 +19,7 @@
 
 .testimonio__texto {
   margin: 0 0 1.25rem;
-  color: var(--marca-principal);
+  color: var(--marca-titulos, var(--marca-principal));
   font-family: var(--fuente-titulos);
   font-size: 1.375rem;
   line-height: 1.4;

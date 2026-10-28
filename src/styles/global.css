@@ -27,7 +27,7 @@ h3 {
   font-family: var(--fuente-titulos);
   font-weight: 500;
   line-height: 1.15;
-  color: var(--marca-principal);
+  color: var(--marca-titulos, var(--marca-principal));
 }
 
 p {
@@ -144,7 +144,7 @@ main > .seccion:nth-child(odd) {
 
 .boton--acento {
   background-color: var(--marca-acento);
-  color: var(--marca-texto);
+  color: var(--marca-sobre-acento, var(--marca-texto));
 }
 
 .boton--acento:hover {
