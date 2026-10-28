@@ -1,0 +1,111 @@
+---
+import '../styles/contacto.css';
+import { negocio, contacto, redes, enlaceWhatsApp, enlaceTelefono } from '../lib/contenido.js';
+
+const whatsapp = enlaceWhatsApp();
+const telefono = enlaceTelefono();
+const conFormulario = Boolean(contacto.claveWeb3forms);
+const { titulo, texto } = negocio.textos.contacto;
+---
+
+<section class="seccion contacto" id="contacto">
+  <div class:list={['contenedor', 'contacto__rejilla', { 'contacto__rejilla--con-formulario': conFormulario }]}>
+    <div class="contacto__texto">
+      <h2 class="seccion__titulo">{titulo}</h2>
+      {texto && <p class="seccion__intro">{texto}</p>}
+
+      <ul class="contacto__canales">
+        {
+          whatsapp && (
+            <li>
+              <a class="boton boton--principal" href={whatsapp} target="_blank" rel="noopener noreferrer">
+                Escribir por WhatsApp<span class="solo-lectores"> (se abre en una pestaña nueva)</span>
+              </a>
+            </li>
+          )
+        }
+        {
+          telefono && (
+            <li>
+              <span class="contacto__rotulo">Teléfono</span>
+              <a class="contacto__enlace" href={telefono}>{contacto.telefono}</a>
+            </li>
+          )
+        }
+        {
+          contacto.correo && (
+            <li>
+              <span class="contacto__rotulo">Correo</span>
+              <a class="contacto__enlace" href={`mailto:${contacto.correo}`}>{contacto.correo}</a>
+            </li>
+          )
+        }
+        {
+          redes.length > 0 && (
+            <li>
+              <span class="contacto__rotulo">Redes</span>
+              <span class="contacto__redes">
+                {redes.map((red) => (
+                  <a class="contacto__enlace" href={red.url} target="_blank" rel="noopener noreferrer">
+                    {red.nombre}
+                    <span class="solo-lectores"> (se abre en una pestaña nueva)</span>
+                  </a>
+                ))}
+              </span>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+
+    {
+      conFormulario && (
+        <form
+          class="contacto__formulario"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          data-formulario-contacto
+        >
+          <input type="hidden" name="access_key" value={contacto.claveWeb3forms} />
+          <input type="hidden" name="subject" value={`Nuevo mensaje desde la web de ${negocio.nombre}`} />
+          <input type="hidden" name="from_name" value={negocio.nombre} />
+          <input
+            class="contacto__trampa"
+            type="checkbox"
+            name="botcheck"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+
+          <div class="campo">
+            <label class="campo__etiqueta" for="contacto-nombre">Nombre</label>
+            <input class="campo__control" id="contacto-nombre" name="name" required autocomplete="name" />
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="contacto-correo">Correo</label>
+            <input
+              class="campo__control"
+              id="contacto-correo"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+            />
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="contacto-mensaje">Mensaje</label>
+            <textarea class="campo__control" id="contacto-mensaje" name="message" rows="5" required></textarea>
+          </div>
+
+          <button class="boton boton--principal contacto__enviar" type="submit">Enviar mensaje</button>
+          <p class="contacto__estado" role="status" aria-live="polite" data-estado></p>
+        </form>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  import '../scripts/contacto.js';
+</script>

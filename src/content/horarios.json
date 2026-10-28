@@ -1,0 +1,9 @@
+{
+  "titulo": "Horarios",
+  "filas": [
+    { "dias": "Lunes a viernes", "horas": "7:00 a 19:00" },
+    { "dias": "Sábados", "horas": "8:00 a 20:00" },
+    { "dias": "Domingos", "horas": "Cerrado" }
+  ],
+  "nota": "En feriados abrimos de 9:00 a 15:00."
+}

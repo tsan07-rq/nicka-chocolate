@@ -1,0 +1,46 @@
+---
+import '../styles/hero.css';
+import Foto from './Foto.astro';
+import { negocio } from '../lib/contenido.js';
+import { resolverImagen } from '../lib/imagenes.js';
+
+const { titulo, subtitulo, imagen, botonPrincipal, botonSecundario } = negocio.hero;
+const tieneFoto = Boolean(resolverImagen(imagen));
+---
+
+<section class:list={['hero', { 'hero--con-imagen': tieneFoto }]} id="inicio">
+  {
+    tieneFoto && (
+      <Foto
+        ruta={imagen}
+        alt=""
+        widths={[800, 1280, 1920]}
+        sizes="100vw"
+        class="hero__imagen"
+        loading="eager"
+        fetchpriority="high"
+      />
+    )
+  }
+
+  <div class="contenedor">
+    <h1 class="hero__titulo">{titulo}</h1>
+    {subtitulo && <p class="hero__subtitulo">{subtitulo}</p>}
+    {
+      (botonPrincipal || botonSecundario) && (
+        <div class="hero__acciones">
+          {botonPrincipal && (
+            <a class="boton boton--acento" href={botonPrincipal.enlace}>
+              {botonPrincipal.texto}
+            </a>
+          )}
+          {botonSecundario && (
+            <a class="boton boton--contorno" href={botonSecundario.enlace}>
+              {botonSecundario.texto}
+            </a>
+          )}
+        </div>
+      )
+    }
+  </div>
+</section>

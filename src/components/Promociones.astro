@@ -1,0 +1,44 @@
+---
+import '../styles/promociones.css';
+import Foto from './Foto.astro';
+import { negocio, getPromociones } from '../lib/contenido.js';
+import { resolverImagen } from '../lib/imagenes.js';
+
+const promociones = getPromociones().map((promo) => ({
+  ...promo,
+  tieneFoto: Boolean(resolverImagen(promo.imagen)),
+}));
+---
+
+<section class="seccion promociones" id="promociones">
+  <div class="contenedor">
+    <header class="seccion__cabecera">
+      <h2 class="seccion__titulo">{negocio.textos.promociones.titulo}</h2>
+    </header>
+
+    <ul class="promociones__lista">
+      {
+        promociones.map((promo) => (
+          <li class:list={['promo', { 'promo--con-foto': promo.tieneFoto }]}>
+            {promo.tieneFoto && (
+              <div class="promo__medio">
+                <Foto
+                  ruta={promo.imagen}
+                  alt={promo.titulo}
+                  widths={[320, 480, 640]}
+                  sizes="(min-width: 52rem) 11rem, 20rem"
+                  class="promo__foto"
+                />
+              </div>
+            )}
+            <div class="promo__encabezado">
+              <h3 class="promo__titulo">{promo.titulo}</h3>
+              {promo.vigencia && <p class="promo__vigencia">{promo.vigencia}</p>}
+            </div>
+            {promo.descripcion && <p class="promo__descripcion">{promo.descripcion}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

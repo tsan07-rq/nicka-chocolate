@@ -1,0 +1,51 @@
+---
+import '../styles/pie.css';
+import { negocio, contacto, redes, seccionesVisibles } from '../lib/contenido.js';
+
+const enlaces = seccionesVisibles().filter((seccion) => seccion.enNav);
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor pie__fila">
+    <div class="pie__marca">
+      <p class="pie__nombre">{negocio.nombre}</p>
+      {contacto.direccion && <p class="pie__direccion">{contacto.direccion}</p>}
+    </div>
+
+    <nav aria-label="Secciones">
+      <h2 class="pie__titulo">Secciones</h2>
+      <ul class="pie__lista">
+        {
+          enlaces.map((seccion) => (
+            <li>
+              <a class="pie__enlace" href={`#${seccion.id}`}>{seccion.etiqueta}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    {
+      redes.length > 0 && (
+        <div>
+          <h2 class="pie__titulo">Síguenos</h2>
+          <ul class="pie__lista">
+            {redes.map((red) => (
+              <li>
+                <a class="pie__enlace" href={red.url} target="_blank" rel="noopener noreferrer">
+                  {red.nombre}
+                  <span class="solo-lectores"> (se abre en una pestaña nueva)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="contenedor pie__legal">
+    <p class="pie__copyright">© {anio} {negocio.nombre}. Todos los derechos reservados.</p>
+  </div>
+</footer>

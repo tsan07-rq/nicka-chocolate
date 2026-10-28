@@ -1,0 +1,228 @@
+/*
+  Barra de navegación.
+  Al inicio: marca y enlaces centrados, sobre el hero, sin fondo.
+  Al hacer scroll (clase .es-compacta, la pone cabecera.js): el fondo toma el
+  color de marca, la barra se hace más baja y el grupo se desliza a la izquierda.
+*/
+
+/* Marca de 1px en lo alto de la página: cuando sale de pantalla, la barra se compacta. */
+.cabecera__centinela {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 48px;
+  pointer-events: none;
+}
+
+.cabecera {
+  --duracion: 0.7s;
+  --curva: cubic-bezier(0.65, 0, 0.35, 1);
+
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  padding-block: 1.75rem;
+  color: var(--marca-sobre-principal);
+  background-color: transparent;
+  transition:
+    background-color var(--duracion) var(--curva),
+    padding-block var(--duracion) var(--curva);
+}
+
+.cabecera.es-compacta {
+  padding-block: 0.875rem;
+}
+
+.cabecera.es-compacta,
+.cabecera[data-abierto] {
+  background-color: var(--marca-principal);
+}
+
+.cabecera__fila {
+  display: flex;
+  align-items: center;
+}
+
+/*
+  Dos espaciadores a los lados del grupo (marca + enlaces).
+  Con los dos en flex-grow 1 el grupo queda centrado; al llevar el izquierdo a 0,
+  el grupo se desliza a la izquierda. flex-grow sí se puede animar.
+*/
+.cabecera__relleno {
+  flex: 1 1 0;
+}
+
+.cabecera__relleno--izq {
+  transition: flex-grow var(--duracion) var(--curva);
+}
+
+.cabecera.es-compacta .cabecera__relleno--izq {
+  flex-grow: 0;
+}
+
+/* Marca */
+.cabecera__marca {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cabecera__nombre {
+  display: block;
+  font-family: var(--fuente-titulos);
+  font-size: 1.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  transition: font-size var(--duracion) var(--curva);
+}
+
+.cabecera.es-compacta .cabecera__nombre {
+  font-size: 1.375rem;
+}
+
+.cabecera__logo {
+  height: 3rem;
+  width: auto;
+  transition: height var(--duracion) var(--curva);
+}
+
+.cabecera.es-compacta .cabecera__logo {
+  height: 2.25rem;
+}
+
+/* Enlaces */
+.cabecera__nav {
+  margin-inline-start: 3rem;
+}
+
+.cabecera__lista {
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cabecera__enlace {
+  position: relative;
+  display: block;
+  padding-block: 0.25rem;
+  color: inherit;
+  font-size: 0.975rem;
+  text-decoration: none;
+}
+
+.cabecera__enlace::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.cabecera__enlace:hover::after,
+.cabecera__enlace:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Botón de menú: solo en móvil */
+.cabecera__boton {
+  display: none;
+  align-items: center;
+  margin-inline-end: -0.75rem;
+  padding: 0.75rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.cabecera__barras,
+.cabecera__barras::before,
+.cabecera__barras::after {
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background: currentColor;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.cabecera__barras {
+  position: relative;
+}
+
+.cabecera__barras::before,
+.cabecera__barras::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.cabecera__barras::before {
+  top: -7px;
+}
+
+.cabecera__barras::after {
+  top: 7px;
+}
+
+.cabecera[data-abierto] .cabecera__barras {
+  background: transparent;
+}
+
+.cabecera[data-abierto] .cabecera__barras::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.cabecera[data-abierto] .cabecera__barras::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 52rem) {
+  .cabecera__relleno {
+    display: none;
+  }
+
+  .cabecera__fila {
+    justify-content: space-between;
+  }
+
+  .cabecera__boton {
+    display: inline-flex;
+  }
+
+  .cabecera__nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.5rem var(--margen-pagina) 1.5rem;
+    border-top: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+    background-color: var(--marca-principal);
+  }
+
+  .js .cabecera__nav {
+    display: none;
+  }
+
+  .js .cabecera[data-abierto] .cabecera__nav {
+    display: block;
+  }
+
+  .cabecera__lista {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cabecera__enlace {
+    padding-block: 0.75rem;
+    font-size: 1.125rem;
+  }
+}

@@ -1,0 +1,33 @@
+---
+import '../styles/ubicacion.css';
+import Horarios from './Horarios.astro';
+import { negocio, contacto, enlaceMapa, mapaIncrustado } from '../lib/contenido.js';
+
+const mapa = mapaIncrustado();
+const abrirMapa = enlaceMapa();
+---
+
+<section class="seccion ubicacion" id="ubicacion">
+  <div class="contenedor ubicacion__rejilla">
+    <div class="ubicacion__datos">
+      <h2 class="seccion__titulo">{negocio.textos.ubicacion.titulo}</h2>
+      <address class="ubicacion__direccion">{contacto.direccion}</address>
+      {contacto.referencia && <p class="ubicacion__referencia">{contacto.referencia}</p>}
+      <a class="boton boton--contorno" href={abrirMapa} target="_blank" rel="noopener noreferrer">
+        Abrir en Google Maps<span class="solo-lectores"> (se abre en una pestaña nueva)</span>
+      </a>
+      <Horarios />
+    </div>
+
+    <div class="ubicacion__mapa">
+      <iframe
+        class="ubicacion__marco"
+        src={mapa}
+        title={`Mapa de ${negocio.nombre}: ${contacto.direccion}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>

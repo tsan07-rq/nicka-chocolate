@@ -1,0 +1,12 @@
+{
+  "titulo": "Galería",
+  "intro": "",
+  "fotos": [
+    { "imagen": "/src/assets/uploads/galeria-1.png", "descripcion": "Foto de ejemplo 1" },
+    { "imagen": "/src/assets/uploads/galeria-2.png", "descripcion": "Foto de ejemplo 2" },
+    { "imagen": "/src/assets/uploads/galeria-3.png", "descripcion": "Foto de ejemplo 3" },
+    { "imagen": "/src/assets/uploads/galeria-4.png", "descripcion": "Foto de ejemplo 4" },
+    { "imagen": "/src/assets/uploads/galeria-5.png", "descripcion": "Foto de ejemplo 5" },
+    { "imagen": "/src/assets/uploads/galeria-6.png", "descripcion": "Foto de ejemplo 6" }
+  ]
+}

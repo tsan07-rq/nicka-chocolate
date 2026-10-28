@@ -1,0 +1,40 @@
+.ubicacion__rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.ubicacion__direccion {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.ubicacion__referencia {
+  margin-bottom: 1.5rem;
+  color: var(--marca-texto-suave);
+}
+
+.ubicacion__mapa {
+  width: 100%; /* sin esto, aspect-ratio + min-height ensanchan el mapa más que la pantalla en móvil */
+  aspect-ratio: 4 / 3;
+  min-height: 20rem;
+  overflow: hidden;
+  border-radius: var(--radio-tarjeta);
+  background-color: var(--marca-principal-suave);
+}
+
+.ubicacion__marco {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 52rem) {
+  .ubicacion__rejilla {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,36 @@
+---
+// Layout base. Para cambiar de perfil, se cambia la ruta del import de marca.css.
+import '../../perfiles/cafeteria/marca.css';
+import '../styles/global.css';
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BotonWhatsApp from '../components/BotonWhatsApp.astro';
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+}
+
+const { titulo, descripcion = '' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SEO titulo={titulo} descripcion={descripcion} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+    <Header />
+    <slot />
+    <Footer />
+    <BotonWhatsApp />
+  </body>
+</html>

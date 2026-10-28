@@ -1,0 +1,66 @@
+---
+// Título, descripción, Open Graph (vista previa al compartir) y datos estructurados
+// para que Google entienda que es una cafetería (nombre, dirección, teléfono, redes).
+import { getImage } from 'astro:assets';
+import { negocio, contacto, redes } from '../lib/contenido.js';
+import { resolverImagen } from '../lib/imagenes.js';
+
+const { titulo, descripcion = '' } = Astro.props;
+
+const sitio = Astro.site ?? new URL(Astro.url.origin);
+const canonica = new URL(Astro.url.pathname, sitio).href;
+
+// Imagen para compartir: la del negocio si existe; si no, la de ejemplo de /public (1200x630).
+// La foto del cliente se recorta a 1200x630 y se comprime: WhatsApp y otras apps no muestran
+// la vista previa si la foto pesa demasiado, y una foto de celular puede pesar varios MB.
+const elegida = resolverImagen(negocio.imagenCompartir);
+let rutaImagen = '/og-default.png';
+let anchoImagen = 1200;
+let altoImagen = 630;
+
+if (elegida && typeof elegida === 'object') {
+  const optimizada = await getImage({ src: elegida, width: 1200, height: 630, format: 'jpeg', quality: 80 });
+  rutaImagen = optimizada.src;
+} else if (typeof elegida === 'string') {
+  // URL externa: no se conocen sus medidas.
+  rutaImagen = elegida;
+  anchoImagen = 0;
+  altoImagen = 0;
+}
+const imagen = new URL(rutaImagen, sitio).href;
+
+const datos = {
+  '@context': 'https://schema.org',
+  '@type': 'CafeOrCoffeeShop',
+  name: negocio.nombre,
+  description: descripcion || undefined,
+  url: canonica,
+  image: imagen,
+  telephone: contacto.telefono || undefined,
+  email: contacto.correo || undefined,
+  address: contacto.direccion
+    ? { '@type': 'PostalAddress', streetAddress: contacto.direccion }
+    : undefined,
+  sameAs: redes.length ? redes.map((red) => red.url) : undefined,
+};
+
+// Los textos los edita el cliente: se escapa "<" para que nunca pueda cerrar el <script>.
+const datosJson = JSON.stringify(datos).replace(/</g, '\\u003c');
+---
+
+<title>{titulo}</title>
+{descripcion && <meta name="description" content={descripcion} />}
+<link rel="canonical" href={canonica} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={negocio.nombre} />
+<meta property="og:title" content={titulo} />
+{descripcion && <meta property="og:description" content={descripcion} />}
+<meta property="og:url" content={canonica} />
+<meta property="og:locale" content="es_EC" />
+<meta property="og:image" content={imagen} />
+{anchoImagen > 0 && <meta property="og:image:width" content={String(anchoImagen)} />}
+{altoImagen > 0 && <meta property="og:image:height" content={String(altoImagen)} />}
+<meta name="twitter:card" content="summary_large_image" />
+
+<script type="application/ld+json" set:html={datosJson} />

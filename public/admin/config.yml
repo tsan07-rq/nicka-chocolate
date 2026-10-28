@@ -1,0 +1,411 @@
+# Configuración del CMS (Decap CMS) para el cliente.
+# Se ajusta UNA vez por cliente: solo las líneas marcadas con REEMPLAZAR.
+# Los nombres de los campos (name:) deben coincidir con los de src/content/*.json.
+# Para comprobarlo: npm run validar
+
+backend:
+  name: github
+  repo: tsan07-rq/plantilla-maestra # REEMPLAZAR: usuario/repositorio del cliente
+  branch: main
+  base_url: https://plantilla-maestra.pages.dev # REEMPLAZAR: dirección del sitio donde corre el login (functions/api)
+  auth_endpoint: api/auth
+
+locale: es
+site_url: https://plantilla-maestra.pages.dev # REEMPLAZAR: dirección pública del sitio
+display_url: https://plantilla-maestra.pages.dev # REEMPLAZAR: igual que site_url
+
+# Las fotos se guardan dentro del proyecto para que Astro las optimice al publicar.
+media_folder: src/assets/uploads
+public_folder: /src/assets/uploads
+
+# Nombres de archivo sin acentos ni espacios.
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  # ---------------------------------------------------------------- Información del negocio
+  - name: negocio
+    label: Información del negocio
+    editor:
+      preview: false
+    files:
+      - name: textos
+        label: Textos y fotos principales
+        file: src/content/negocio.json
+        fields:
+          - name: nombre
+            label: Nombre del negocio
+          - name: descripcion
+            label: Descripción corta
+            widget: text
+            hint: Aparece en Google debajo del nombre. Una o dos frases.
+          - name: logo
+            label: Logo
+            widget: image
+            required: false
+            hint: Versión clara del logo, porque se muestra sobre el color de la marca. Si no subes ninguno, se muestra el nombre.
+          - name: imagenCompartir
+            label: Foto para compartir el enlace
+            widget: image
+            required: false
+            hint: Es la foto que aparece cuando alguien comparte la página por WhatsApp o redes.
+          - name: moneda
+            widget: hidden
+            required: false
+          - name: localePrecios
+            widget: hidden
+            required: false
+          - name: hero
+            label: Portada (lo primero que se ve)
+            widget: object
+            collapsed: false
+            fields:
+              - name: titulo
+                label: Título
+              - name: subtitulo
+                label: Subtítulo
+                widget: text
+                required: false
+              - name: imagen
+                label: Foto de fondo
+                widget: image
+                required: false
+                hint: Foto horizontal y de buena calidad. Si no subes ninguna, se usa el color de la marca.
+              - name: botonPrincipal
+                label: Botón principal
+                widget: object
+                required: false
+                fields:
+                  - name: texto
+                    label: Texto del botón
+                    required: false
+                  - name: enlace
+                    label: Enlace
+                    required: false
+                    hint: "Escribe #menu para ir al menú, #ubicacion para ir a Visítanos, #contacto para ir a Contacto, o una dirección web completa."
+              - name: botonSecundario
+                label: Botón secundario
+                widget: object
+                required: false
+                fields:
+                  - name: texto
+                    label: Texto del botón
+                    required: false
+                  - name: enlace
+                    label: Enlace
+                    required: false
+          - name: historia
+            label: Nosotros (historia del negocio)
+            widget: object
+            collapsed: true
+            fields:
+              - name: titulo
+                label: Título
+              - name: texto
+                label: Texto
+                widget: text
+                required: false
+                hint: Deja una línea en blanco entre párrafos. Si lo dejas vacío, la sección no aparece.
+              - name: imagen
+                label: Foto
+                widget: image
+                required: false
+          - name: textos
+            label: Títulos de las secciones
+            widget: object
+            collapsed: true
+            fields:
+              - name: menu
+                label: Menú
+                widget: object
+                fields:
+                  - name: titulo
+                    label: Título
+                  - name: intro
+                    label: Texto bajo el título
+                    required: false
+                    hint: Por ejemplo, si los precios incluyen impuestos.
+              - name: promociones
+                label: Promociones
+                widget: object
+                fields:
+                  - name: titulo
+                    label: Título
+              - name: testimonios
+                label: Testimonios
+                widget: object
+                fields:
+                  - name: titulo
+                    label: Título
+              - name: ubicacion
+                label: Visítanos
+                widget: object
+                fields:
+                  - name: titulo
+                    label: Título
+              - name: contacto
+                label: Contacto
+                widget: object
+                fields:
+                  - name: titulo
+                    label: Título
+                  - name: texto
+                    label: Texto bajo el título
+                    required: false
+
+  # ---------------------------------------------------------------- Menú
+  - name: menu
+    label: Menú
+    label_singular: Categoría
+    folder: src/content/menu
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: nombre
+    summary: "{{nombre}}"
+    sortable_fields: ["nombre", "orden"]
+    editor:
+      preview: false
+    fields:
+      - name: nombre
+        label: Nombre de la categoría
+        hint: Por ejemplo, Cafés, Postres, Desayunos.
+      - name: orden
+        label: Posición
+        widget: number
+        value_type: int
+        min: 0
+        default: 10
+        hint: Las categorías se muestran de menor a mayor número (1 sale primero).
+      - name: productos
+        label: Productos
+        label_singular: Producto
+        widget: list
+        required: false
+        summary: "{{fields.nombre}}"
+        fields:
+          - name: nombre
+            label: Nombre
+          - name: descripcion
+            label: Descripción
+            widget: text
+            required: false
+          - name: precio
+            label: Precio
+            widget: number
+            value_type: float
+            min: 0
+            step: 0.05
+            required: false
+            hint: Solo el número, por ejemplo 2.50
+          - name: imagen
+            label: Foto
+            widget: image
+            required: false
+            hint: Opcional. Si ninguna foto de la categoría tiene imagen, se muestra como lista.
+          - name: etiqueta
+            label: Etiqueta
+            required: false
+            hint: Una palabra corta que destaca el producto, por ejemplo Nuevo o Favorito.
+          - name: visible
+            label: Mostrar en el menú
+            widget: boolean
+            default: true
+            hint: Desactívalo para ocultar el producto sin borrarlo (por ejemplo, si se agotó).
+
+  # ---------------------------------------------------------------- Promociones
+  - name: promociones
+    label: Promociones
+    label_singular: Promoción
+    folder: src/content/promociones
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: titulo
+    summary: "{{titulo}}"
+    sortable_fields: ["titulo", "orden"]
+    editor:
+      preview: false
+    fields:
+      - name: titulo
+        label: Título
+      - name: descripcion
+        label: Descripción
+        widget: text
+        required: false
+      - name: imagen
+        label: Foto
+        widget: image
+        required: false
+      - name: vigencia
+        label: Cuándo es válida
+        required: false
+        hint: Por ejemplo, "Lunes a viernes" o "Hasta el 30 de noviembre".
+      - name: activa
+        label: Mostrar en la página
+        widget: boolean
+        default: true
+        hint: Si ninguna promoción está activa, la sección no aparece.
+      - name: orden
+        label: Posición
+        widget: number
+        value_type: int
+        min: 0
+        default: 10
+
+  # ---------------------------------------------------------------- Galería
+  - name: galeria
+    label: Galería
+    editor:
+      preview: false
+    files:
+      - name: galeria
+        label: Fotos de la galería
+        file: src/content/galeria.json
+        fields:
+          - name: titulo
+            label: Título
+          - name: intro
+            label: Texto bajo el título
+            required: false
+          - name: fotos
+            label: Fotos
+            widget: list
+            required: false
+            label_singular: Foto
+            summary: "{{fields.descripcion}}"
+            fields:
+              - name: imagen
+                label: Foto
+                widget: image
+              - name: descripcion
+                label: Descripción de la foto
+                required: false
+                hint: Una frase corta. Ayuda a las personas con discapacidad visual y a que Google encuentre tu página.
+
+  # ---------------------------------------------------------------- Horarios
+  - name: horarios
+    label: Horarios
+    editor:
+      preview: false
+    files:
+      - name: horarios
+        label: Horarios
+        file: src/content/horarios.json
+        fields:
+          - name: titulo
+            label: Título
+          - name: filas
+            label: Días y horas
+            widget: list
+            required: false
+            label_singular: Horario
+            summary: "{{fields.dias}}: {{fields.horas}}"
+            fields:
+              - name: dias
+                label: Días
+                hint: Por ejemplo, "Lunes a viernes".
+              - name: horas
+                label: Horas
+                hint: Por ejemplo, "7:00 a 19:00" o "Cerrado".
+          - name: nota
+            label: Nota
+            required: false
+            hint: Por ejemplo, el horario de los feriados.
+
+  # ---------------------------------------------------------------- Testimonios
+  - name: testimonios
+    label: Testimonios
+    label_singular: Testimonio
+    folder: src/content/testimonios
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: nombre
+    summary: "{{nombre}}"
+    sortable_fields: ["nombre", "orden"]
+    editor:
+      preview: false
+    fields:
+      - name: nombre
+        label: Nombre del cliente
+      - name: texto
+        label: Comentario
+        widget: text
+        hint: Copia el comentario tal como lo escribió el cliente. Pide su permiso antes de publicarlo.
+      - name: detalle
+        label: Detalle
+        required: false
+        hint: Por ejemplo, "Cliente desde 2022".
+      - name: orden
+        label: Posición
+        widget: number
+        value_type: int
+        min: 0
+        default: 10
+
+  # ---------------------------------------------------------------- Datos de contacto
+  - name: contacto
+    label: Datos de contacto
+    editor:
+      preview: false
+    files:
+      - name: contacto
+        label: Datos de contacto
+        file: src/content/contacto.json
+        fields:
+          - name: whatsapp
+            label: WhatsApp
+            required: false
+            hint: "Solo números, con el código del país y sin el 0 inicial. Ecuador: 593 y luego el número. Ejemplo: 593991234567"
+            pattern: ['^[0-9 +]{8,18}$', 'Escribe solo números, con el código del país. Ejemplo: 593991234567']
+          - name: mensajeWhatsapp
+            label: Mensaje que aparece escrito al abrir WhatsApp
+            required: false
+          - name: telefono
+            label: Teléfono
+            required: false
+          - name: correo
+            label: Correo
+            required: false
+          - name: direccion
+            label: Dirección
+            widget: text
+            required: false
+            hint: Escríbela completa (calle, ciudad, país). Con ella se muestra el mapa. Si la dejas vacía, la sección Visítanos no aparece.
+          - name: referencia
+            label: Referencia para llegar
+            required: false
+            hint: Por ejemplo, "frente a la farmacia".
+          - name: mapa
+            label: Enlace de Google Maps (opcional)
+            required: false
+            hint: Solo si quieres que el botón "Abrir en Google Maps" lleve a un enlace concreto.
+          - name: claveWeb3forms
+            widget: hidden
+            required: false
+
+  # ---------------------------------------------------------------- Redes sociales
+  - name: redes
+    label: Redes sociales
+    editor:
+      preview: false
+    files:
+      - name: redes
+        label: Redes sociales
+        file: src/content/redes.json
+        fields:
+          - name: instagram
+            label: Instagram
+            required: false
+            hint: Puedes escribir solo el usuario (@minegocio) o el enlace completo.
+          - name: facebook
+            label: Facebook
+            required: false
+          - name: tiktok
+            label: TikTok
+            required: false

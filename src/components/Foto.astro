@@ -1,0 +1,39 @@
+---
+// Muestra una foto del contenido. Si está en src/assets/uploads/ se optimiza
+// (varios tamaños y formato moderno); si es una URL externa se muestra tal cual.
+// Si no se encuentra, no muestra nada.
+import { Image } from 'astro:assets';
+import { resolverImagen } from '../lib/imagenes.js';
+
+const {
+  ruta,
+  alt = '',
+  sizes = '100vw',
+  widths = [480, 800, 1200],
+  class: clase,
+  loading = 'lazy',
+  fetchpriority,
+} = Astro.props;
+
+const imagen = resolverImagen(ruta);
+---
+
+{
+  imagen && typeof imagen === 'object' && (
+    <Image
+      src={imagen}
+      alt={alt}
+      widths={widths}
+      sizes={sizes}
+      class={clase}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      decoding="async"
+    />
+  )
+}
+{
+  imagen && typeof imagen === 'string' && (
+    <img src={imagen} alt={alt} class={clase} loading={loading} fetchpriority={fetchpriority} decoding="async" />
+  )
+}

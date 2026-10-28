@@ -1,0 +1,8 @@
+{
+  "titulo": "Desayuno completo",
+  "descripcion": "Café a elección, un sándwich y un jugo natural por $5.50. Válido hasta las 10:00.",
+  "imagen": "/src/assets/uploads/promo-desayuno.png",
+  "vigencia": "Lunes a viernes",
+  "activa": true,
+  "orden": 1
+}

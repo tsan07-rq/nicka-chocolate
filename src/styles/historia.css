@@ -1,0 +1,40 @@
+.historia__rejilla {
+  display: grid;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.historia__rejilla--con-foto {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.historia__medio {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radio-tarjeta);
+}
+
+.historia__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.historia__texto {
+  max-width: 40rem;
+}
+
+.historia__parrafo {
+  font-size: 1.1875rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 52rem) {
+  .historia__rejilla--con-foto {
+    grid-template-columns: 1fr;
+  }
+
+  .historia__medio {
+    max-width: 24rem;
+  }
+}

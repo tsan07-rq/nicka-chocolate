@@ -1,0 +1,85 @@
+---
+// Menú por categorías. Cada categoría se adapta a sus fotos:
+// - con alguna foto: tarjetas (los productos sin foto llevan un recuadro con su inicial)
+// - sin ninguna foto: lista tipográfica con precios alineados
+import '../styles/menu.css';
+import Foto from './Foto.astro';
+import { negocio, getMenu, formatearPrecio } from '../lib/contenido.js';
+import { resolverImagen } from '../lib/imagenes.js';
+
+const categorias = getMenu().map((categoria) => ({
+  ...categoria,
+  productos: categoria.productos.map((producto) => ({
+    ...producto,
+    tieneFoto: Boolean(resolverImagen(producto.imagen)),
+    precioTexto: formatearPrecio(producto.precio),
+  })),
+}));
+
+const { titulo, intro } = negocio.textos.menu;
+---
+
+<section class="seccion menu" id="menu">
+  <div class="contenedor">
+    <header class="seccion__cabecera">
+      <h2 class="seccion__titulo">{titulo}</h2>
+      {intro && <p class="seccion__intro">{intro}</p>}
+    </header>
+
+    {
+      categorias.map((categoria) => {
+        const conFotos = categoria.productos.some((producto) => producto.tieneFoto);
+        return (
+          <div class="menu__categoria">
+            <h3 class="menu__nombre-categoria">{categoria.nombre}</h3>
+            {conFotos ? (
+              <ul class="menu__tarjetas">
+                {categoria.productos.map((producto) => (
+                  <li class="producto">
+                    <div class="producto__medio">
+                      {producto.tieneFoto ? (
+                        <Foto
+                          ruta={producto.imagen}
+                          alt={producto.nombre}
+                          widths={[400, 640, 960]}
+                          sizes="(min-width: 60rem) 22rem, (min-width: 36rem) 45vw, 90vw"
+                          class="producto__foto"
+                        />
+                      ) : (
+                        <span class="producto__inicial" aria-hidden="true">
+                          {producto.nombre.charAt(0)}
+                        </span>
+                      )}
+                      {producto.etiqueta && <span class="producto__etiqueta">{producto.etiqueta}</span>}
+                    </div>
+                    <div class="producto__cuerpo">
+                      <div class="producto__linea">
+                        <h4 class="producto__nombre">{producto.nombre}</h4>
+                        {producto.precioTexto && <span class="producto__precio">{producto.precioTexto}</span>}
+                      </div>
+                      {producto.descripcion && <p class="producto__descripcion">{producto.descripcion}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul class="menu__lista">
+                {categoria.productos.map((producto) => (
+                  <li class="item">
+                    <div class="item__linea">
+                      <h4 class="item__nombre">{producto.nombre}</h4>
+                      {producto.etiqueta && <span class="item__etiqueta">{producto.etiqueta}</span>}
+                      <span class="item__relleno" aria-hidden="true"></span>
+                      {producto.precioTexto && <span class="item__precio">{producto.precioTexto}</span>}
+                    </div>
+                    {producto.descripcion && <p class="item__descripcion">{producto.descripcion}</p>}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      })
+    }
+  </div>
+</section>

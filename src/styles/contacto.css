@@ -1,0 +1,96 @@
+.contacto__rejilla {
+  display: grid;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.contacto__rejilla--con-formulario {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+}
+
+.contacto__canales {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contacto__rotulo {
+  display: block;
+  color: var(--marca-texto-suave);
+  font-size: 0.875rem;
+}
+
+.contacto__enlace {
+  font-size: 1.125rem;
+}
+
+.contacto__redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+/* Formulario */
+.contacto__formulario {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.campo {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.campo__etiqueta {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.campo__control {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--marca-borde-fuerte);
+  border-radius: var(--radio-boton);
+  background-color: var(--marca-fondo);
+  color: inherit;
+  font: inherit;
+}
+
+.contacto__enviar {
+  justify-self: start;
+}
+
+.contacto__enviar:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.contacto__estado {
+  min-height: 1.6em;
+  margin: 0;
+  font-weight: 600;
+}
+
+.contacto__estado--ok {
+  color: var(--marca-principal);
+}
+
+.contacto__estado--error {
+  color: #9b2c2c;
+}
+
+/* Campo trampa contra robots: las personas no lo ven */
+.contacto__trampa {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+@media (max-width: 52rem) {
+  .contacto__rejilla--con-formulario {
+    grid-template-columns: 1fr;
+  }
+}

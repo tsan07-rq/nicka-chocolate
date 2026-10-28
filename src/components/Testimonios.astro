@@ -1,0 +1,32 @@
+---
+import '../styles/testimonios.css';
+import { negocio, getTestimonios } from '../lib/contenido.js';
+
+const testimonios = getTestimonios();
+---
+
+<section class="seccion testimonios" id="testimonios">
+  <div class="contenedor">
+    <header class="seccion__cabecera">
+      <h2 class="seccion__titulo">{negocio.textos.testimonios.titulo}</h2>
+    </header>
+
+    <ul class="testimonios__lista">
+      {
+        testimonios.map((testimonio) => (
+          <li>
+            <figure class="testimonio">
+              <blockquote class="testimonio__cita">
+                <p class="testimonio__texto">{testimonio.texto}</p>
+              </blockquote>
+              <figcaption class="testimonio__autor">
+                <span class="testimonio__nombre">{testimonio.nombre}</span>
+                {testimonio.detalle && <span class="testimonio__detalle">{testimonio.detalle}</span>}
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+/*
+  Identidad de marca del perfil "cafeteria".
+  Es el ÚNICO archivo que se edita para adaptar la plantilla a un cliente nuevo.
+  Valores actuales: relleno neutro, a reemplazar con el manual de marca del cliente.
+*/
+
+:root {
+  /* 1. Cinco colores de marca */
+  --marca-principal: #2f3a33;   /* barra de navegación sólida, botones, títulos */
+  --marca-secundario: #7a6a53;  /* reservado: hoy ningún componente lo usa (para otros perfiles) */
+  --marca-acento: #c0933a;      /* enlaces, precios, estados activos */
+  --marca-fondo: #f6f4ef;       /* fondo general */
+  --marca-texto: #1f2420;       /* texto principal */
+
+  /* 2. Tipografías (se sustituyen por fuentes autoalojadas del cliente) */
+  --fuente-titulos: Georgia, 'Times New Roman', serif;
+  --fuente-texto: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* 3. Estilo: esquinas y botones (0 = rectos, valores mayores = redondeados) */
+  --radio-boton: 2px;
+  --radio-tarjeta: 4px;
+
+  /* Tonos derivados: se calculan solos a partir de los cinco colores */
+  --marca-principal-suave: color-mix(in srgb, var(--marca-principal) 12%, var(--marca-fondo));
+  --marca-fondo-alterno: color-mix(in srgb, var(--marca-principal) 5%, var(--marca-fondo));
+  --marca-borde: color-mix(in srgb, var(--marca-texto) 14%, var(--marca-fondo));
+  --marca-texto-suave: color-mix(in srgb, var(--marca-texto) 68%, var(--marca-fondo));
+  --marca-principal-hover: color-mix(in srgb, var(--marca-principal) 82%, black);
+  --marca-principal-profundo: color-mix(in srgb, var(--marca-principal) 70%, black); /* fondo del hero sin foto */
+  --marca-sobre-principal: var(--marca-fondo); /* texto sobre fondos de color principal */
+  --marca-acento-texto: color-mix(in srgb, var(--marca-acento) 60%, var(--marca-texto)); /* acento legible como texto sobre fondo claro */
+  --marca-borde-fuerte: color-mix(in srgb, var(--marca-texto) 55%, var(--marca-fondo)); /* bordes de campos de formulario */
+}

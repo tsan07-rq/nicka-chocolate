@@ -1,0 +1,62 @@
+---
+import '../styles/cabecera.css';
+import { negocio, seccionesVisibles } from '../lib/contenido.js';
+import { resolverImagen } from '../lib/imagenes.js';
+
+// Solo aparecen en la barra las secciones activas que tienen contenido.
+const enlaces = seccionesVisibles().filter((seccion) => seccion.enNav);
+
+// El logo puede venir del CMS (src/assets/uploads) o ser una ruta/URL normal.
+// Debe verse bien sobre el color principal de la marca (versión clara).
+const logo = resolverImagen(negocio.logo);
+const logoSrc = logo && typeof logo === 'object' ? logo.src : logo;
+---
+
+<div class="cabecera__centinela" data-centinela aria-hidden="true"></div>
+
+<header class="cabecera" data-cabecera>
+  <div class="contenedor cabecera__fila">
+    <span class="cabecera__relleno cabecera__relleno--izq" aria-hidden="true"></span>
+
+    <a class="cabecera__marca" href="#inicio">
+      {
+        logoSrc ? (
+          <img class="cabecera__logo" src={logoSrc} alt={negocio.nombre} />
+        ) : (
+          <span class="cabecera__nombre">{negocio.nombre}</span>
+        )
+      }
+    </a>
+
+    <button
+      class="cabecera__boton"
+      type="button"
+      aria-expanded="false"
+      aria-controls="navegacion-principal"
+      data-boton-menu
+    >
+      <span class="cabecera__barras" aria-hidden="true"></span>
+      <span class="solo-lectores">Abrir navegación</span>
+    </button>
+
+    <nav class="cabecera__nav" id="navegacion-principal" aria-label="Principal">
+      <ul class="cabecera__lista">
+        {
+          enlaces.map((seccion) => (
+            <li>
+              <a class="cabecera__enlace" href={`#${seccion.id}`}>
+                {seccion.etiqueta}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <span class="cabecera__relleno cabecera__relleno--der" aria-hidden="true"></span>
+  </div>
+</header>
+
+<script>
+  import '../scripts/cabecera.js';
+</script>

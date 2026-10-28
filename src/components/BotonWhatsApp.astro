@@ -1,0 +1,21 @@
+---
+import '../styles/whatsapp-flotante.css';
+import { enlaceWhatsApp } from '../lib/contenido.js';
+
+const enlace = enlaceWhatsApp();
+---
+
+{
+  enlace && (
+    <a class="whatsapp-flotante" href={enlace} target="_blank" rel="noopener noreferrer">
+      <svg class="whatsapp-flotante__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9.5L5 21v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+          fill="currentColor"
+        />
+      </svg>
+      <span>Escríbenos</span>
+      <span class="solo-lectores"> por WhatsApp (se abre en una pestaña nueva)</span>
+    </a>
+  )
+}

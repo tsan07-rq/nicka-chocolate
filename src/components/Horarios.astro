@@ -1,0 +1,21 @@
+---
+import '../styles/horarios.css';
+import { horarios } from '../lib/contenido.js';
+---
+
+{
+  horarios.filas.length > 0 && (
+    <div class="horarios">
+      <h3 class="horarios__titulo">{horarios.titulo}</h3>
+      <dl class="horarios__lista">
+        {horarios.filas.map((fila) => (
+          <div class="horarios__fila">
+            <dt class="horarios__dias">{fila.dias}</dt>
+            <dd class="horarios__horas">{fila.horas}</dd>
+          </div>
+        ))}
+      </dl>
+      {horarios.nota && <p class="horarios__nota">{horarios.nota}</p>}
+    </div>
+  )
+}

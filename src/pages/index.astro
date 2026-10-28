@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Menu from '../components/Menu.astro';
+import Promociones from '../components/Promociones.astro';
+import Historia from '../components/Historia.astro';
+import Galeria from '../components/Galeria.astro';
+import Testimonios from '../components/Testimonios.astro';
+import Ubicacion from '../components/Ubicacion.astro';
+import Contacto from '../components/Contacto.astro';
+import { negocio, seccionesVisibles } from '../lib/contenido.js';
+
+// Cada id de src/config/secciones.js tiene su componente. El orden es el de ese archivo.
+const componentes = {
+  menu: Menu,
+  promociones: Promociones,
+  historia: Historia,
+  galeria: Galeria,
+  testimonios: Testimonios,
+  ubicacion: Ubicacion,
+  contacto: Contacto,
+};
+
+const secciones = seccionesVisibles().filter((seccion) => seccion.id !== 'inicio');
+---
+
+<Base titulo={negocio.nombre} descripcion={negocio.descripcion}>
+  <main id="contenido">
+    <Hero />
+    {
+      secciones.map((seccion) => {
+        const Seccion = componentes[seccion.id];
+        return Seccion ? <Seccion /> : null;
+      })
+    }
+  </main>
+</Base>

@@ -1,0 +1,19 @@
+{
+  "name": "plantilla-maestra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "validar": "node scripts/validar-contenido.mjs",
+    "contraste": "node scripts/comprobar-contraste.mjs"
+  },
+  "dependencies": {
+    "astro": "latest"
+  }
+}

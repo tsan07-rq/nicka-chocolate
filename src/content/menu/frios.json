@@ -1,0 +1,30 @@
+{
+  "nombre": "Fríos",
+  "orden": 2,
+  "productos": [
+    {
+      "nombre": "Cold brew",
+      "descripcion": "Café infusionado en frío durante 16 horas, servido con hielo.",
+      "precio": 3.25,
+      "imagen": "",
+      "etiqueta": "",
+      "visible": true
+    },
+    {
+      "nombre": "Latte frío",
+      "descripcion": "Espresso doble sobre leche fría y hielo.",
+      "precio": 3.25,
+      "imagen": "",
+      "etiqueta": "",
+      "visible": true
+    },
+    {
+      "nombre": "Limonada de café",
+      "descripcion": "Espresso, limón y un toque de miel. Más fresca de lo que suena.",
+      "precio": 3.5,
+      "imagen": "",
+      "etiqueta": "Nuevo",
+      "visible": true
+    }
+  ]
+}

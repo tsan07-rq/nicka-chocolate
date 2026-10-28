@@ -1,0 +1,8 @@
+{
+  "titulo": "Dos por uno en postres",
+  "descripcion": "Ejemplo de promoción apagada: no se muestra en la página porque no está activa. Se enciende desde el CMS.",
+  "imagen": "",
+  "vigencia": "Jueves por la tarde",
+  "activa": false,
+  "orden": 2
+}

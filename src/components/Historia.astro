@@ -1,0 +1,38 @@
+---
+import '../styles/historia.css';
+import Foto from './Foto.astro';
+import { negocio } from '../lib/contenido.js';
+import { resolverImagen } from '../lib/imagenes.js';
+
+const { titulo, texto, imagen } = negocio.historia;
+
+// Un párrafo por cada línea en blanco del texto escrito en el CMS.
+const parrafos = texto
+  .split(/\n\s*\n/)
+  .map((parrafo) => parrafo.trim())
+  .filter(Boolean);
+
+const tieneFoto = Boolean(resolverImagen(imagen));
+---
+
+<section class="seccion historia" id="historia">
+  <div class:list={['contenedor', 'historia__rejilla', { 'historia__rejilla--con-foto': tieneFoto }]}>
+    {
+      tieneFoto && (
+        <div class="historia__medio">
+          <Foto
+            ruta={imagen}
+            alt=""
+            widths={[480, 720, 960]}
+            sizes="(min-width: 52rem) 30rem, 24rem"
+            class="historia__foto"
+          />
+        </div>
+      )
+    }
+    <div class="historia__texto">
+      <h2 class="seccion__titulo">{titulo}</h2>
+      {parrafos.map((parrafo) => <p class="historia__parrafo">{parrafo}</p>)}
+    </div>
+  </div>
+</section>

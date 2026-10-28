@@ -1,0 +1,30 @@
+---
+import '../styles/galeria.css';
+import Foto from './Foto.astro';
+import { galeria } from '../lib/contenido.js';
+---
+
+<section class="seccion galeria" id="galeria">
+  <div class="contenedor">
+    <header class="seccion__cabecera">
+      <h2 class="seccion__titulo">{galeria.titulo}</h2>
+      {galeria.intro && <p class="seccion__intro">{galeria.intro}</p>}
+    </header>
+
+    <ul class="galeria__lista">
+      {
+        galeria.fotos.map((foto) => (
+          <li class="galeria__elemento">
+            <Foto
+              ruta={foto.imagen}
+              alt={foto.descripcion}
+              widths={[320, 480, 720]}
+              sizes="(min-width: 60rem) 22rem, (min-width: 36rem) 45vw, 90vw"
+              class="galeria__foto"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

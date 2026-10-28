@@ -1,0 +1,33 @@
+{
+  "nombre": "Café Ejemplo",
+  "descripcion": "Café de especialidad tostado cada semana, filtrados y pastelería hecha en casa. Abierto todos los días desde las 7:00.",
+  "logo": "",
+  "imagenCompartir": "",
+  "moneda": "USD",
+  "localePrecios": "en-US",
+  "hero": {
+    "titulo": "Café de especialidad, tostado cada semana.",
+    "subtitulo": "Espresso, filtrados y pastelería hecha en casa. Abrimos todos los días desde las 7:00.",
+    "imagen": "",
+    "botonPrincipal": { "texto": "Ver el menú", "enlace": "#menu" },
+    "botonSecundario": { "texto": "Cómo llegar", "enlace": "#ubicacion" }
+  },
+  "historia": {
+    "titulo": "Una cafetería de barrio, con café de verdad",
+    "texto": "Texto de ejemplo: aquí va la historia del negocio, contada con las palabras de su dueño. Cuándo abrió, quién prepara el café, de dónde viene el grano.\n\nUn segundo párrafo ayuda a que el texto respire. Puede hablar del equipo, del local o de lo que hace distinto al negocio.",
+    "imagen": "/src/assets/uploads/historia.png"
+  },
+  "textos": {
+    "menu": {
+      "titulo": "Nuestro menú",
+      "intro": "Precios con impuestos incluidos. Pregunta por las opciones sin lactosa."
+    },
+    "promociones": { "titulo": "Promociones" },
+    "testimonios": { "titulo": "Lo que dicen nuestros clientes" },
+    "ubicacion": { "titulo": "Visítanos" },
+    "contacto": {
+      "titulo": "Escríbenos",
+      "texto": "Para reservas, pedidos grandes o cualquier duda, escríbenos y respondemos el mismo día."
+    }
+  }
+}
