@@ -5,7 +5,7 @@
 
 backend:
   name: github
-  repo: tsan07-rq/plantilla-maestra # REEMPLAZAR: usuario/repositorio del cliente
+  repo: tsan07-rq/nicka-chocolate # usuario/repositorio del cliente
   branch: main
   base_url: https://plantilla-maestra.pages.dev # REEMPLAZAR: dirección del sitio donde corre el login (functions/api)
   auth_endpoint: api/auth
@@ -286,6 +286,44 @@ collections:
                 required: false
                 hint: Una frase corta. Ayuda a las personas con discapacidad visual y a que Google encuentre tu página.
 
+  # ---------------------------------------------------------------- Puntos de venta
+  - name: puntos-venta
+    label: Puntos de venta
+    editor:
+      preview: false
+    files:
+      - name: puntos-venta
+        label: Dónde comprar
+        file: src/content/puntos-venta.json
+        fields:
+          - name: titulo
+            label: Título
+          - name: intro
+            label: Texto bajo el título
+            required: false
+          - name: puntos
+            label: Puntos de venta
+            widget: list
+            required: false
+            label_singular: Punto de venta
+            summary: "{{fields.ciudad}}: {{fields.nombre}}"
+            fields:
+              - name: nombre
+                label: Nombre del local
+                hint: Por ejemplo, "Supermercado Dicavi".
+              - name: ciudad
+                label: Ciudad
+                hint: Los locales de la misma ciudad se muestran juntos. Escribe la ciudad siempre igual.
+              - name: direccion
+                label: Dirección
+                required: false
+                hint: Calle y referencia. Si la dejas vacía, solo se muestra el nombre y la ciudad.
+              - name: visible
+                label: Mostrar en la página
+                widget: boolean
+                default: true
+                hint: Desactívalo para ocultar el local sin borrarlo (por ejemplo, si dejó de vender Nicka).
+
   # ---------------------------------------------------------------- Horarios
   - name: horarios
     label: Horarios
@@ -385,6 +423,10 @@ collections:
             label: Enlace de Google Maps (opcional)
             required: false
             hint: Solo si quieres que el botón "Abrir en Google Maps" lleve a un enlace concreto.
+          - name: consultaMapa
+            label: Nombre del negocio en Google Maps (opcional)
+            required: false
+            hint: Lo que se busca para mostrar el mapa, por ejemplo "Nicka Chocolate, Zamora, Ecuador". Si lo dejas vacío, se usa la dirección.
           - name: claveWeb3forms
             widget: hidden
             required: false

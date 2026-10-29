@@ -72,21 +72,30 @@ function contraste(a, b) {
 
 const aHex = (rgb) => '#' + rgb.map((c) => c.toString(16).padStart(2, '0')).join('');
 
+// Tokens opcionales para marcas oscuras: si no existen, se usan los de siempre.
+const tokenTitulos = '--marca-titulos' in variables ? '--marca-titulos' : '--marca-principal';
+const tokenSobreAcento = '--marca-sobre-acento' in variables ? '--marca-sobre-acento' : '--marca-texto';
+
 // [descripción, color del frente, color del fondo, mínimo]
 const pares = [
   ['Texto principal sobre el fondo', '--marca-texto', '--marca-fondo', 4.5],
   ['Texto principal sobre secciones alternas', '--marca-texto', '--marca-fondo-alterno', 4.5],
   ['Texto de apoyo sobre el fondo', '--marca-texto-suave', '--marca-fondo', 4.5],
   ['Texto de apoyo sobre secciones alternas', '--marca-texto-suave', '--marca-fondo-alterno', 4.5],
-  ['Títulos (color principal) sobre el fondo', '--marca-principal', '--marca-fondo', 4.5],
+  ['Títulos sobre el fondo', tokenTitulos, '--marca-fondo', 4.5],
+  ['Títulos sobre secciones alternas', tokenTitulos, '--marca-fondo-alterno', 4.5],
   ['Enlaces (acento legible) sobre el fondo', '--marca-acento-texto', '--marca-fondo', 4.5],
   ['Enlaces (acento legible) sobre secciones alternas', '--marca-acento-texto', '--marca-fondo-alterno', 4.5],
   ['Texto claro sobre la barra de navegación', '--marca-sobre-principal', '--marca-principal', 4.5],
   ['Texto claro sobre el hero sin foto y el pie', '--marca-sobre-principal', '--marca-principal-profundo', 4.5],
-  ['Texto de los botones de acento y de WhatsApp', '--marca-texto', '--marca-acento', 4.5],
+  ['Texto de los botones de acento y de WhatsApp', tokenSobreAcento, '--marca-acento', 4.5],
   ['Anillo de foco (acento) sobre la barra', '--marca-acento', '--marca-principal', 3],
   ['Borde de los campos del formulario', '--marca-borde-fuerte', '--marca-fondo', 3],
 ];
+
+if ('--marca-error' in variables) {
+  pares.push(['Mensajes de error sobre el fondo', '--marca-error', '--marca-fondo', 4.5]);
+}
 
 let fallos = 0;
 console.log(`Contraste de los colores de ${path.relative(process.cwd(), archivo)}\n`);

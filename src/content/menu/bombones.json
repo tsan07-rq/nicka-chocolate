@@ -1,0 +1,20 @@
+{
+  "nombre": "Bombones",
+  "orden": 2,
+  "productos": [
+    {
+      "nombre": "Bombones rellenos de jalea de cacao",
+      "descripcion": "Bombones de chocolate con relleno de jalea de cacao.",
+      "imagen": "/src/assets/uploads/bombones-jalea-cacao.jpg",
+      "etiqueta": "",
+      "visible": true
+    },
+    {
+      "nombre": "Bombones rellenos de maracuyá",
+      "descripcion": "Bombones de chocolate con relleno de maracuyá.",
+      "imagen": "/src/assets/uploads/bombones-maracuya.jpg",
+      "etiqueta": "",
+      "visible": true
+    }
+  ]
+}

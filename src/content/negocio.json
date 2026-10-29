@@ -1,33 +1,45 @@
 {
-  "nombre": "Café Ejemplo",
-  "descripcion": "Café de especialidad tostado cada semana, filtrados y pastelería hecha en casa. Abierto todos los días desde las 7:00.",
-  "logo": "",
-  "imagenCompartir": "",
+  "nombre": "Nicka Chocolate Amazónico",
+  "descripcion": "Chocolate artesanal de Zamora Chinchipe, Ecuador, elaborado con cacao amazónico: tabletas, bombones, pasta de cacao, nibs y licor de cacao Münay.",
+  "logo": "/src/assets/uploads/logo-nicka.png",
+  "imagenCompartir": "/src/assets/uploads/portada-productos.jpg",
   "moneda": "USD",
-  "localePrecios": "en-US",
+  "localePrecios": "es-EC",
   "hero": {
-    "titulo": "Café de especialidad, tostado cada semana.",
-    "subtitulo": "Espresso, filtrados y pastelería hecha en casa. Abrimos todos los días desde las 7:00.",
-    "imagen": "",
-    "botonPrincipal": { "texto": "Ver el menú", "enlace": "#menu" },
-    "botonSecundario": { "texto": "Cómo llegar", "enlace": "#ubicacion" }
+    "titulo": "Chocolate amazónico, hecho en Zamora Chinchipe.",
+    "subtitulo": "Elaborado con semillas de cacao escogidas y seleccionadas, con dedicación en cada paso, para que llegue a tu paladar de una manera única.",
+    "imagen": "/src/assets/uploads/portada-productos.jpg",
+    "botonPrincipal": {
+      "texto": "Ver productos",
+      "enlace": "#menu"
+    },
+    "botonSecundario": {
+      "texto": "Dónde comprar",
+      "enlace": "#puntos-venta"
+    }
   },
   "historia": {
-    "titulo": "Una cafetería de barrio, con café de verdad",
-    "texto": "Texto de ejemplo: aquí va la historia del negocio, contada con las palabras de su dueño. Cuándo abrió, quién prepara el café, de dónde viene el grano.\n\nUn segundo párrafo ayuda a que el texto respire. Puede hablar del equipo, del local o de lo que hace distinto al negocio.",
-    "imagen": "/src/assets/uploads/historia.png"
+    "titulo": "Gladys Quishpe y el cacao amazónico",
+    "texto": "Nicka nace del deseo de Gladys Quishpe de darle valor al cacao amazónico de Zamora Chinchipe. Es hija de un productor de cacao y decidió transformar ese cultivo en chocolate, con la misión de llevar el chocolate amazónico lejos de su tierra.\n\nSe capacita de forma constante para que cada producto tenga la mejor calidad, y esa búsqueda de innovación se nota en lo que elabora: tabletas, bombones, pasta de cacao, nibs y el licor de cacao Münay.",
+    "imagen": "/src/assets/uploads/fundadora-gladis.jpg"
   },
   "textos": {
     "menu": {
-      "titulo": "Nuestro menú",
-      "intro": "Precios con impuestos incluidos. Pregunta por las opciones sin lactosa."
+      "titulo": "Nuestros productos",
+      "intro": "Pídelos por WhatsApp o encuéntralos en nuestros puntos de venta."
     },
-    "promociones": { "titulo": "Promociones" },
-    "testimonios": { "titulo": "Lo que dicen nuestros clientes" },
-    "ubicacion": { "titulo": "Visítanos" },
+    "promociones": {
+      "titulo": "Promociones"
+    },
+    "testimonios": {
+      "titulo": "Lo que dicen nuestros clientes"
+    },
+    "ubicacion": {
+      "titulo": "Visítanos"
+    },
     "contacto": {
-      "titulo": "Escríbenos",
-      "texto": "Para reservas, pedidos grandes o cualquier duda, escríbenos y respondemos el mismo día."
+      "titulo": "Haz tu pedido",
+      "texto": "Para pedidos, consultas o para ser distribuidor, escríbenos por WhatsApp o llámanos."
     }
   }
 }

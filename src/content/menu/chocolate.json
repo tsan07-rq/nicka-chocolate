@@ -1,0 +1,27 @@
+{
+  "nombre": "Chocolate",
+  "orden": 1,
+  "productos": [
+    {
+      "nombre": "Chocolate dulce al 55%",
+      "descripcion": "Chocolate artesanal con 55% de cacao amazónico.",
+      "imagen": "/src/assets/uploads/chocolate-dulce-55.jpg",
+      "etiqueta": "",
+      "visible": true
+    },
+    {
+      "nombre": "Chocolate semiamargo al 75%",
+      "descripcion": "Chocolate semiamargo con 75% de cacao amazónico.",
+      "imagen": "/src/assets/uploads/chocolate-semiamargo-75.jpg",
+      "etiqueta": "",
+      "visible": true
+    },
+    {
+      "nombre": "Pasta de cacao",
+      "descripcion": "100% cacao. Presentación de 227 g.",
+      "imagen": "/src/assets/uploads/pasta-de-cacao.jpg",
+      "etiqueta": "",
+      "visible": true
+    }
+  ]
+}

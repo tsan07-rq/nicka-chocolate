@@ -8,11 +8,12 @@
 // (por ejemplo, sin promociones activas no aparece ni en la página ni en el menú).
 export const secciones = [
   { id: 'inicio', etiqueta: 'Inicio', activa: true, enNav: true },
-  { id: 'menu', etiqueta: 'Menú', activa: true, enNav: true },
+  { id: 'menu', etiqueta: 'Productos', activa: true, enNav: true },
   { id: 'promociones', etiqueta: 'Promociones', activa: true, enNav: false },
   { id: 'historia', etiqueta: 'Nosotros', activa: true, enNav: true },
   { id: 'galeria', etiqueta: 'Galería', activa: true, enNav: true },
   { id: 'testimonios', etiqueta: 'Testimonios', activa: true, enNav: false },
+  { id: 'puntos-venta', etiqueta: 'Dónde comprar', activa: true, enNav: true },
   { id: 'ubicacion', etiqueta: 'Visítanos', activa: true, enNav: true },
   { id: 'contacto', etiqueta: 'Contacto', activa: true, enNav: true },
 ];

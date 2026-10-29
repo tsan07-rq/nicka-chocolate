@@ -9,7 +9,7 @@
   padding: 0.8rem 1.1rem;
   border-radius: var(--radio-boton);
   background-color: var(--marca-acento);
-  color: var(--marca-texto);
+  color: var(--marca-sobre-acento, var(--marca-texto));
   font-weight: 600;
   line-height: 1;
   text-decoration: none;

@@ -1,6 +1,6 @@
 ---
 // Título, descripción, Open Graph (vista previa al compartir) y datos estructurados
-// para que Google entienda que es una cafetería (nombre, dirección, teléfono, redes).
+// para que Google entienda qué es el negocio (nombre, dirección, teléfono, redes).
 import { getImage } from 'astro:assets';
 import { negocio, contacto, redes } from '../lib/contenido.js';
 import { resolverImagen } from '../lib/imagenes.js';
@@ -31,7 +31,7 @@ const imagen = new URL(rutaImagen, sitio).href;
 
 const datos = {
   '@context': 'https://schema.org',
-  '@type': 'CafeOrCoffeeShop',
+  '@type': 'LocalBusiness',
   name: negocio.nombre,
   description: descripcion || undefined,
   url: canonica,
