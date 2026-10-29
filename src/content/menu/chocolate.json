@@ -10,9 +10,9 @@
       "visible": true
     },
     {
-      "nombre": "Tableta al 70% de cacao",
-      "descripcion": "Chocolate oscuro de sabor intenso.",
-      "imagen": "",
+      "nombre": "Chocolate semiamargo al 75%",
+      "descripcion": "Chocolate semiamargo con 75% de cacao amazónico.",
+      "imagen": "/src/assets/uploads/chocolate-semiamargo-75.jpg",
       "etiqueta": "",
       "visible": true
     },
